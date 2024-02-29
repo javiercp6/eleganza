@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+/* import { Image } from "astro:assets"; */
 
 interface Props {
   img: string;
@@ -16,7 +16,7 @@ const { img, slug, price, category, title } = Astro.props;
   class="w-full min-w-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 >
   <a href="#" class="h-52">
-    <Image
+    <img
       src={img}
       class="p-2 h-48 object-cover"
       width="760"

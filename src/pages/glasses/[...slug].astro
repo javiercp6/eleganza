@@ -2,8 +2,8 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import SectionContainer from "../../components/SectionContainer.astro";
 import Layout from "../../layouts/Layout.astro";
-import { Image } from "astro:assets";
-
+/* import { Image } from "astro:assets";
+ */
 export async function getStaticPaths() {
   const posts = await getCollection("glasses");
   return posts.map((post) => ({
@@ -28,7 +28,7 @@ const { Content } = await post.render();
         <div
           class="w-full md:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         >
-          <Image
+          <img
             src={post.data.heroImage!}
             class="rounded"
             width="760"
