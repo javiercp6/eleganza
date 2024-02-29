@@ -1,0 +1,23 @@
+---
+import CardProduct from "../components/CardProduct.astro";
+import { getCollection } from "astro:content";
+const glasses = await getCollection("glasses", ({ data }) => {
+  return data.showHome === true;
+});
+---
+
+<div class="flex gap-4 w-full snap-x overflow-x-auto whitespace-nowrap">
+  {
+    glasses.map((g) => {
+      return (
+        <CardProduct
+          slug={g.slug}
+          img={g.data.heroImage!}
+          title={g.data.title}
+          category={g.data.category.id}
+          price={g.data.price}
+        />
+      );
+    })
+  }
+</div>

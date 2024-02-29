@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+---
+
+<Layout
+  title="Page Not Found"
+  description="Tienda de lentes de sol y otros artículos para la vista."
+>
+  <main class="px-4 min-h-screen flex">
+    <SectionContainer class="my-auto">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
+          <h1
+            class="mb-4 text-4xl tracking-tight font-extrabold md:text-6xl xl:text-6xl text-red-600 dark:text-red-500"
+          >
+            404
+          </h1>
+          <p
+            class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white"
+          >
+            Error
+          </p>
+          <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+            Lo sentimos, no podemos encontrar esa página. Encontrará mucho que
+            explorar en la página de inicio.
+          </p>
+          <a
+            href="/"
+            class="py-2.5 px-5 mx-3 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-red-400 dark:border-gray-600 dark:hover:text-red-600 dark:hover:bg-gray-700"
+            >Volver al Inicio</a
+          >
+        </div>
+      </div>
+    </SectionContainer>
+  </main>
+</Layout>

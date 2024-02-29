@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionContainer from "../../components/SectionContainer.astro";
+import { getCollection } from "astro:content";
+import CardProduct from "../../components/CardProduct.astro";
+
+const posts = await getCollection("glasses");
+const categories = await getCollection("category");
+export function getStaticPaths() {
+  return [
+    { params: { category: "all" } },
+    { params: { category: "monofocales" } },
+    { params: { category: "bifocales" } },
+    { params: { category: "progresivos" } },
+    { params: { category: "fotocromáticos" } },
+  ];
+}
+
+const { category } = Astro.params;
+---
+
+<Layout
+  title={`Óptica Eleganza - Lentes ${category}`}
+  description="Tienda de lentes de sol y otros artículos para la vista."
+>
+  <main class="px-4 min-h-screen mt-14">
+    <SectionContainer id="experiencia" class="py-6">
+      <div
+        class="flex gap-4 p-4 w-full snap-x overflow-x-auto whitespace-nowrap"
+      >
+        <a
+          id="btnAll"
+          href="/glasses/all"
+          class={category === "all"
+            ? "px-2 py-1 me-2 text-xs font-medium text-red-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-red-600 dark:border-gray-600 dark:hover:text-red-700 dark:hover:bg-gray-700"
+            : "px-2 py-1 me-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-red-700 dark:hover:bg-gray-700"}
+          >Todos</a
+        >
+        {
+          categories.map((c) => {
+            return (
+              <a
+                href={"/glasses/" + c.id}
+                class={
+                  category === c.id
+                    ? "capitalize px-2 py-1 me-2 text-xs font-medium text-red-600 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-red-600 dark:border-gray-600 dark:hover:text-red-700 dark:hover:bg-gray-700"
+                    : "capitalize px-2 py-1 me-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-red-700 dark:hover:bg-gray-700"
+                }
+              >
+                {c.id}
+              </a>
+            );
+          })
+        }
+      </div>
+      <div
+        class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center py-10"
+      >
+        {
+          posts
+            .filter(
+              (g) => g.data.category.id === category || category === "all"
+            )
+            .map((post) => (
+              <CardProduct
+                slug={post.slug}
+                img={post.data.heroImage!}
+                title={post.data.title}
+                category={post.data.category.id}
+                price={post.data.price}
+              />
+            ))
+        }
+      </div>
+    </SectionContainer>
+  </main>
+</Layout>

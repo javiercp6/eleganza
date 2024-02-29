@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Hero from "../components/Hero.astro";
+import Carrusel from "../components/Carrusel.astro";
+import Contact from "../components/Contact.astro";
+import CardCategory from "../components/CardCategory.astro";
+import WhatsAppBtn from "../components/WhatsappBtn.astro";
+import { getCollection } from "astro:content";
+const categories = await getCollection("category");
+---
+
+<Layout
+  title="Óptica Eleganza - Inicio"
+  description="Tienda de lentes de sol y otros artículos para la vista."
+>
+  <main class="px-4">
+    <SectionContainer id="experiencia" class="py-44 md:py-10 pb-32">
+      <Hero />
+    </SectionContainer>
+
+    <SectionContainer id="ss">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
+        {
+          categories.map((c) => {
+            return (
+              <a href={`/glasses/${c.id}`}>
+                <CardCategory url={c.data.heroImage!} title={c.data.title} />
+              </a>
+            );
+          })
+        }
+      </div>
+    </SectionContainer>
+
+    <SectionContainer id="proyectos">
+      <div>
+        <h2
+          class="max-w-2xl mb-4 text-3xl text-gray-800 font-bold tracking-tight leading-none md:text-3xl xl:text-4xl dark:text-white"
+        >
+          Lentes más vendidos
+        </h2>
+      </div>
+      <Carrusel />
+    </SectionContainer>
+    <SectionContainer id="contact">
+      <Contact />
+    </SectionContainer>
+    <WhatsAppBtn />
+  </main>
+</Layout>

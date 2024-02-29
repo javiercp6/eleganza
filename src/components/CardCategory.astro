@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { url, title } = Astro.props;
+---
+
+<div
+  class="overflow-hidden bg-cover rounded-lg cursor-pointer h-60 group"
+  style=`background-image:url('${url}')`
+>
+  <div
+    class="flex flex-col justify-center w-full h-full px-4 md:px-8 py-4 transition-opacity duration-700 opacity-100 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100 md:opacity-0"
+  >
+    <h2 class="mt-4 text-xl font-semibold text-white capitalize">
+      Colección de {title}
+    </h2>
+    <p class="mt-2 text-lg tracking-wider text-red-400 uppercase">Ver</p>
+  </div>
+</div>

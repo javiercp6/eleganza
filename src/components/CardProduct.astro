@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  img: string;
+  slug: string;
+  title: string;
+  price: string;
+  category: string;
+}
+
+const { img, slug, price, category, title } = Astro.props;
+---
+
+<div
+  class="w-full min-w-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+>
+  <a href="#" class="h-52">
+    <Image
+      src={img}
+      class="p-2 h-48 object-cover"
+      width="760"
+      height="90"
+      decoding="async"
+      loading="lazy"
+      alt={`Lentes ${title}`}
+    />
+  </a>
+  <div class="px-4 pb-4">
+    <div>
+      <h5
+        class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        {title}
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400 capitalize">
+        {category}
+      </p>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-md font-bold text-gray-900 dark:text-white"
+        >${price}</span
+      >
+      <a
+        href={`/glasses/${slug}`}
+        class="px-2 py-1 me-2 text-xs text-red-700 font-medium focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700"
+        >Ver Detalles</a
+      >
+    </div>
+  </div>
+</div>
