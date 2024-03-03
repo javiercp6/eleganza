@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import hero from "../assets/hero.png";
+---
+
 <div
   class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
 >
@@ -41,8 +46,8 @@
     >
   </div>
   <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-    <img
-      src="https://res.cloudinary.com/di4d4tjhr/image/upload/v1705175731/cat3_i7wrc6.jpg"
+    <Image
+      src={hero}
       width="1600"
       height="900"
       decoding="async"
